@@ -4,5 +4,9 @@
  */
 require('Task.class.php');
 // Assignment: Implement this script
-//testing push
-?>
+if (assert($_POST)) {
+    $task = new Task;
+    $task->TaskName = $_POST['taskName'];
+    $task->TaskDescription = $_POST['taskDescription'];
+    $task->Save() ;
+}

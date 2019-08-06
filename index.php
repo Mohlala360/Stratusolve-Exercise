@@ -60,6 +60,13 @@
             </button>
             <div id="TaskList" class="list-group">
                 <!-- Assignment: These are simply dummy tasks to show how it should look and work. You need to dynamically update this list with actual tasks -->
+                <?php
+                    $data = file_get_contents("Task_Data.txt");
+                    $data = json_decode($data, true);
+                    foreach ($data as $row) {
+                        echo '<tr><td>'.$row["taskName"].'</td></tr>';
+                    }
+                ?>
                 <a id="1" href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">
                     <h4 class="list-group-item-heading">Task Name</h4>
                     <p class="list-group-item-text">Task Description</p>
@@ -97,7 +104,18 @@
     });
     $('#saveTask').click(function() {
         //Assignment: Implement this functionality
-        alert('You clicked save! Now implement this functionality.');
+        var inputTaskName = document.getElementById("InputTaskName").value;
+        var inputTaskDescription = document.getElementById("InputTaskDescription").value;
+       
+        $.post({url:'update_task.php',
+                type:'post',
+                data: {
+                        taskName : inputTaskName,
+                        taskDescription : inputTaskDescription
+                      }
+                });
+
+       // alert('You clicked save! Now implement this functionality.');
         $('#myModal').modal('hide');
     });
     $('#deleteTask').click(function() {

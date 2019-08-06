@@ -2,11 +2,13 @@
 /**
  * This class handles the modification of a task object
  */
-class Task {
+class Task
+{
     public $TaskId;
     public $TaskName;
     public $TaskDescription;
-    public function __construct($Id = null) {
+    public function __construct($Id = null)
+    {
         if ($Id) {
             // This is an existing task
             $this->LoadFromId($Id);
@@ -15,24 +17,30 @@ class Task {
             $this->Create();
         }
     }
-    protected function Create() {
+    protected function Create()
+    {
         // This function needs to generate a new unique ID for the task
         // Assignment: Generate unique id for the new task
+        $this->TaskId = rand(1, 1000);
         $this->TaskName = '';
         $this->TaskDescription = '';
     }
-    protected function LoadFromId($Id = null) {
+    protected function LoadFromId($Id = null)
+    {
         if ($Id) {
             // Assignment: Code to load details here...
-        } else
+        } else {
             return null;
+        }
     }
 
-    public function Save() {
+    public function Save()
+    {
         //Assignment: Code to save task here
+        file_put_contents('Task_Data.txt', json_encode($this)."\n", FILE_APPEND);
     }
-    public function Delete() {
+    public function Delete()
+    {
         //Assignment: Code to delete task here
     }
 }
-?>

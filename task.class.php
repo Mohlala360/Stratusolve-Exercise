@@ -37,7 +37,17 @@ class Task
     public function Save()
     {
         //Assignment: Code to save task here
-        file_put_contents('Task_Data.txt', json_encode($this)."\n", FILE_APPEND);
+        $current_data = file_get_contents('Task_Data.txt');
+        $array_data = json_decode($current_data,true);
+        $extra = array (
+           'TaskId' => $this->TaskId,
+           'TaskName' => $this->TaskName,
+           'TaskDescription' => $this->TaskDescription
+        );
+        $array_data[] = $extra;
+        $encode = json_encode($array_data);
+
+        file_put_contents('Task_Data.txt', $encode );
     }
     public function Delete()
     {

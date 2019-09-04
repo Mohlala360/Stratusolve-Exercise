@@ -62,23 +62,17 @@
                 <!-- Assignment: These are simply dummy tasks to show how it should look and work. You need to dynamically update this list with actual tasks -->
                 <?php
                     $data = file_get_contents("Task_Data.txt");
-                    $data = json_decode($data, true);
-                    foreach ($data as $row) {
-                        echo '<tr><td>'.$row["taskName"].'</td></tr>';
-                    }
+                    $decode = json_decode($data);
+                   foreach ($decode as $mo) {
+                       ?>
+                       <?php
+                       echo '<a id="1" href="#" class="list-group-item" data-toggle="modal" data-target="#myModal"> <h4 class="list-group-item-heading">'?>
+                       <?php echo $mo->TaskName;
+                       echo '</h4> <p class="list-group-item-text">'?><?php echo $mo->TaskDescription;
+                       echo  '</p>
+                   </a>';
+                   }
                 ?>
-                <a id="1" href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">
-                    <h4 class="list-group-item-heading">Task Name</h4>
-                    <p class="list-group-item-text">Task Description</p>
-                </a>
-                <a id="2" href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">
-                    <h4 class="list-group-item-heading">Task Name</h4>
-                    <p class="list-group-item-text">Task Description</p>
-                </a>
-                <a id="3" href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">
-                    <h4 class="list-group-item-heading">Task Name</h4>
-                    <p class="list-group-item-text">Task Description</p>
-                </a>
             </div>
         </div>
         <div class="col-md-3">
